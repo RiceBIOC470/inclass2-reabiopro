@@ -1,0 +1,116 @@
+
+%% Inclass assignment 2
+
+% 1. a. fill in this loop with a conditional statement so that it displays
+% only the odd numbers
+
+for ii = 1:20
+end
+
+%ANSWER: Display only those numbers that if divide by two they do not have an integer result
+
+for ii = 1:20
+       if rem(ii, 2) ~= 0
+          disp(ii)
+       end
+end
+
+% b. Write a new loop to display the same odd numbers which doesn't use a conditional statement 
+
+%ANSWER: Display me the numbers that their division by two is not an integer
+for ii = 1:20
+       disp(ii((ii/2) ~= int16(ii/2)))
+end
+% c. display the same odd numbers without a loop or conditional (hint use
+%  num2str)
+
+a = 1:20
+disp(a((a/2) ~= int16(a/2)))
+disp(a(int16(a/2)))
+% or
+
+a = 1:20
+s = num2str(a(1:2:20))
+s = num2str(1:2:20)
+%% 2. Vectorize the following code (that is produce the same result in z
+%without using a loop). 
+
+%a. 
+
+for ii = 1:100
+    z(ii) = ii*ii;
+end
+
+%ANSWER:
+
+z = 1:100
+z = power(z,2)
+
+%b. 
+z = 0;
+for ii = 1:100
+    z = z + ii;
+end
+
+%ANSWER:
+z = sum(1:100)
+
+%c.
+xx = rand(50,2);
+for ii = 1:50
+    z(ii) = sqrt(xx(ii,1)^2+xx(ii,2)^2);
+end
+
+%ANSWER:
+
+xx = rand(50,2);
+Z = sqrt(power(xx(:,1),2)+power(xx(:,2),2))
+% or
+Z = sqrt((xx(:,1).*xx(:,1))+(xx(:,2).*xx(:,2)))
+% d. what is the formula in c computing?
+% ANSWER: For each one of the 50 rows of xx, the loop computes the root of the sum of the squares of the first and the second column elements per row. 
+
+%% plotting
+
+%a. make a plot of sin(x) and cos(x) vs x from x = 0 to 4*pi on the same axis where the graph
+%of sin(x) vs x is a red-dashed line and the graph of cos(x) vs x is a
+%blue solid line.
+
+x = 0:pi/100:4*pi;
+s = sin(x);
+c = cos(x);
+
+figure;
+plot(x, s, 'r--');
+hold on;
+plot(x, c, 'b');
+xlabel('Time')
+ylabel(s,'sin(x)')
+
+%b. repeat the above but where each graph is in a different subplot in the
+% same figure. 
+x = 0:pi/100:4*pi;
+s = sin(x);
+c = cos(x);
+
+figure;
+subplot(2,1,1);
+plot(x, s, 'r--');
+xlabel('Time')
+hold on;
+subplot(2,1,2); 
+plot(x, c, 'b');
+xlabel('Time')
+
+%c. here is some data, imagine they are x and y coordinates for cells. 
+xy_dat = rand(100,2);
+%plot the data in the xy plane.
+%now imagine there is some fluorescence data corresponding to the same
+%cells
+fluor = rand(100,1);
+% plot the data in the xy plane but color code the data by the fluorescnece
+% values. Hint: see the scatter command
+
+scatter(xy_dat(:,1), xy_dat(:,2),[],fluor(:,1),'filled' )
+
+
